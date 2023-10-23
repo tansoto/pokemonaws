@@ -1,7 +1,7 @@
 import json
 import psycopg2
 import os
-import psycopg2 import sql
+from psycopg2 import sql
 
 def lambda_handler(event, context):
     db_host = os.environ['DB_HOST']
