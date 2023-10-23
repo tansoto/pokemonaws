@@ -6,13 +6,13 @@ provider:
   vpc:
     securityGroupIds:
       - sg-0e94dc76d54a58dea
-      subnetIds:
-        - subnet-08e004b9bb88d8b4d
-        - subnet-0b8c05bfa50f63437
-        - subnet-08b179f2fb43c6244
-        - subnet-0c0608f1ce8f52a9e
-        - subnet-0f7dd66fc1fd2fb00
-        - subnet-0703d33f3a409cf69
+    subnetIds:
+      - subnet-08e004b9bb88d8b4d
+      - subnet-0b8c05bfa50f63437
+      - subnet-08b179f2fb43c6244
+      - subnet-0c0608f1ce8f52a9e
+      - subnet-0f7dd66fc1fd2fb00
+      - subnet-0703d33f3a409cf69
 functions:
   my-lambda-function:
     handler: lambda_function.lambda_handler
@@ -26,5 +26,3 @@ functions:
       - htpp:
           path: /post
           method: POST
-
-      
