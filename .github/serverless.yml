@@ -1,7 +1,7 @@
 service: PokemonAPI-POST
 provider:
   name: aws
-  funtime: python 3.9
+  runtime: python 3.9
   region: us-east-1
   vpc:
     securityGroupIds:
@@ -26,5 +26,5 @@ functions:
       - htpp:
           path: /post
           method: POST
-          
+
       
