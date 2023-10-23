@@ -16,7 +16,7 @@ provider:
 functions:
   my-lambda-function:
     handler: lambda_function.lambda_handler
-    environmnet:
+    environment:
       DB_HOST: db-pokemones.c1293ggfy4kr.eu-north-1.rds.amazonaws.com
       DB_PORT: 5432
       DB_NAME: database-1
