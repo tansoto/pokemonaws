@@ -18,16 +18,16 @@ def lambda_handler(event, context):
         nombre = body['nombre_pokemon']
         tipo = body['tipo_pokemon']
         region = body['region_pokemon']
-        insert = sql.SQL("INSERT INTO pokemon (nombre_pokemon) VALUES ({nombre}) returning id")
+        insert = sql.SQL("INSERT INTO pokemon (nombre_pokemon) VALUES ('"+nombre+"') returning id")
 
         cursor.execute(insert)
         id_pokemon = cursor.fetchone()[0]
         conn.commit
 
-        insert = sql.SQL("INSERT INTO tipo pokemon = {id_pokemon}, tipo_pokemon = {tipo}")
+        insert = sql.SQL("INSERT INTO region (nombre_region,id_pokemon) VALUES ('"+region+"','"+id_pokemon+"') returning id")
         cursor.execute(insert)
         conn.commit
-        insert = sql.SQL("INSERT INTO region pokemon = {id_pokemon}, region_pokemon = {region}")
+        insert = sql.SQL("INSERT INTO tipo (nombre_tipo,id_pokemon) VALUES ('"+tipo+"','"+id_pokemon+"') returning id")
         cursor.execute(insert)
         conn.commit
 
@@ -39,10 +39,9 @@ def lambda_handler(event, context):
             "body": "Pokemon insertado correctamente"
         }
     except Exception as e:
-        print(e)
         response = {
             "statusCode": 500,
-            "body": "Error al insertar el pokemon"
+            "body": str(e)
         }
     return response
         
