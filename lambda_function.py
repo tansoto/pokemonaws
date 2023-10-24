@@ -18,10 +18,10 @@ def lambda_handler(event, context):
         nombre = body['nombre_pokemon']
         tipo = body['tipo_pokemon']
         region = body['region_pokemon']
-        insert = sql.SQL("INSERT INTO pokemon (nombre_pokemon) VALUES ('"+nombre+"') returning id")
 
+        insert = sql.SQL("INSERT INTO pokemon (nombre_pokemon) VALUES ({}) returning id").format(sql.Literal(nombre))
         cursor.execute(insert)
-        id_pokemon = cursor.fetchone()[0]
+        id_pokemon = cursor.fetchone()[0]#fetchone() devuelve la primera fila de la consulta en este caso el id del pokemon
         conn.commit
 
         insert = sql.SQL("INSERT INTO region (nombre_region) VALUES ({}) returning id").format(sql.Literal(region))
