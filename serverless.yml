@@ -23,6 +23,6 @@ functions:
       DB_USER: tansoto
       DB_PASSWORD: 123456789
     events:
-      - htpp:
+      - http:
           path: /post
           method: POST
