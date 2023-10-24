@@ -24,10 +24,11 @@ def lambda_handler(event, context):
         id_pokemon = cursor.fetchone()[0]
         conn.commit
 
-        insert_query = sql.SQL("INSERT INTO region (nombre_region, id_pokemon) VALUES ({}, {}) returning id").format((region),(id_pokemon))
+        insert_query = sql.SQL("INSERT INTO region (nombre_region, id_pokemon) VALUES ({}, {}) returning id").format(sql.Literal(region),sql.Literal(id_pokemon))
+
         cursor.execute(insert)
         conn.commit
-        insert = sql.SQL("INSERT INTO tipo (nombre_tipo,id_pokemon) VALUES ({}, {}) returning id").format((tipo),(id_pokemon))
+        insert = sql.SQL("INSERT INTO tipo (nombre_tipo,id_pokemon) VALUES ({}, {}) returning id").format(sql.Literal(tipo),sql.Literal(id_pokemon))
         cursor.execute(insert)
         conn.commit
 
