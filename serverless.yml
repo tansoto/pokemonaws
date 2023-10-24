@@ -19,7 +19,7 @@ functions:
     environment:
       DB_HOST: database-1.cb6jyifm4dgc.us-east-1.rds.amazonaws.com
       DB_PORT: 5432
-      DB_NAME: database-1
+      DB_NAME: pokemones
       DB_USER: tansoto
       DB_PASSWORD: 123456789
     events:
