@@ -21,26 +21,26 @@ def lambda_handler(event, context):
 
         insert = sql.SQL("INSERT INTO pokemon (nombre_pokemon) VALUES ({}) returning id").format(sql.Literal(nombre))
         cursor.execute(insert)
-        id_pokemon = cursor.fetchone()[0]#fetchone() devuelve la primera fila de la consulta en este caso el id del pokemon
-        conn.commit
+        id_pokemon = cursor.fetchone()[0]
+        conn.commit()  # Agregué los paréntesis aquí
 
         insert = sql.SQL("INSERT INTO region (nombre_region) VALUES ({}) returning id").format(sql.Literal(region))
         cursor.execute(insert)
-        conn.commit
+        conn.commit()  # Agregué los paréntesis aquí
         id_region = cursor.fetchone()[0]
 
         insert = sql.SQL("INSERT INTO tipo (nombre_tipo) VALUES ({}) returning id").format(sql.Literal(tipo))
         cursor.execute(insert)
-        conn.commit
+        conn.commit()  # Agregué los paréntesis aquí
         id_tipo = cursor.fetchone()[0]
 
-        insert = sql.SQL("INSERT INTO region_pokemon (id_region, id_pokemon) VALUES ({}, {}) returning id").format(sql.Literal(id_region),sql.Literal(id_pokemon))
+        insert = sql.SQL("INSERT INTO region_pokemon (id_region, id_pokemon) VALUES ({}, {}) returning id").format(sql.Literal(id_region), sql.Literal(id_pokemon))
         cursor.execute(insert)
-        conn.commit
+        conn.commit()  # Agregué los paréntesis aquí
 
-        insert = sql.SQL("INSERT INTO tipo_pokemon (id_tipo, id_pokemon) VALUES ({}, {}) returning id").format(sql.Literal(id_tipo),sql.Literal(id_pokemon))
+        insert = sql.SQL("INSERT INTO tipo_pokemon (id_tipo, id_pokemon) VALUES ({}, {}) returning id").format(sql.Literal(id_tipo), sql.Literal(id_pokemon))
         cursor.execute(insert)
-        conn.commit
+        conn.commit()  # Agregué los paréntesis aquí
 
         cursor.close()
         conn.close()
@@ -55,4 +55,3 @@ def lambda_handler(event, context):
             "body": str(e)
         }
     return response
-        
